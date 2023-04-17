@@ -20,11 +20,14 @@ function Game() {
         <div className="my-80">
         </div>
       </main>
-      <footer className="flex justify-between">
+      <footer >
+        <div className="py-8 bg-purple-500"></div>
+        <div className="flex justify-between bg-purple-800 py-2 text-white">
         <p className="px-2 font-bold">Clicky Game!</p>
         <Link to="/" className="px-2 font-bold hover:text-red-500">
           Home Page
         </Link>
+        </div>
       </footer>
     </div>
   );
