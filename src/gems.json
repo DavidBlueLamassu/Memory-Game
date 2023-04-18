@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Andradite",
+        "location": "../assets/images/andradite.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/0/06/Andradite-Stilbite-Ca-dem05a.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Diamond",
+        "location": "../assets/images/diamond.jpg",
+        "source": "https://www.flickr.com/photos/jurvetson/156830367"
+    },
+    {
+        "id": 3,
+        "title": "Ruby",
+        "location": "../assets/images/ruby.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/8/81/Ruby_oval_0.99cts.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Sapphire",
+        "location": "../assets/images/sapphire.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sapphire_Gem.jpg"
+    }
+  ]
