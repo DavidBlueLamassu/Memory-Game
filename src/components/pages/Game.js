@@ -35,10 +35,27 @@ function Game() {
 }
 
 function GemDisplay() {
+  const randomArray = [];
+  const randomGemsArray = [];
+
+  while (randomArray.length < gems.length) {
+    let x = Math.floor(Math.random() * 4);
+    let numberCheck = randomArray.find(e => e === x);
+    if (numberCheck === undefined) {
+      randomArray.push(x);
+    }
+  }
+
+  for (let i = 0; i < randomArray.length; i++) { 
+    let randomNumber = randomArray[i]
+    let randomGem = gems[randomNumber];
+    randomGemsArray.push(randomGem);
+  }
+ 
   return( <div className="flex justify-evenly" onClick={() => {
     identityTest();}}>
       {
-        gems.map(function(currentObject) {
+        randomGemsArray.map(function(currentObject) {
           return <GemCard
           key={currentObject.id}
           location={currentObject.location} 
@@ -50,8 +67,8 @@ function GemDisplay() {
 }
 
 function identityTest() {
-  console.log("Test");
-  console.log(this);
+  console.log("Identity Test");
+  // GemDisplay();
 }
 
 export default Game;
