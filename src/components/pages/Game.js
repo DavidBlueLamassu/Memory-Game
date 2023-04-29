@@ -8,7 +8,9 @@ let topScore = 0;
 
 function Game() {
   const [cardState, setCardState] = useState({
-    cardShuffle: GemDisplay()
+    cardShuffle: GemDisplay(),
+    gameScore: score,
+    gameTopScore: topScore
   });
 
   function GemDisplay() {
@@ -29,7 +31,9 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    return( <div className="flex justify-evenly" onClick={() => setCardState({ ...cardState, cardShuffle: GemDisplay()})}>
+    return( <div className="flex justify-evenly" onClick={() => {setCardState(
+      { ...cardState, cardShuffle: GemDisplay(), gameScore: scoreDisplay(), gameTopScore: topScore = topScoreDisplay()}
+      ); console.log(score);}}>
         {
           randomGemsArray.map(function(currentObject) {
             return <GemCard
@@ -47,7 +51,7 @@ function Game() {
       <header className="flex text-white bg-purple-900 py-6 text-3xl fixed w-screen justify-evenly shadow-2xl">
         <h1 className="ml-2 font-extrabold">Clicky Game</h1>
         <h1>Click an image to begin!</h1>
-        <h1>Score: {score} | Top Score: {topScore}</h1>
+        <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
       <article className="text-white bg-slate-700 py-32">
         <h1 className="py-10 text-6xl text-center font-bold">Clicky Game!</h1>
@@ -68,5 +72,16 @@ function Game() {
     </div>
   );
 }
+
+function scoreDisplay() {
+  score = score + 1;
+  return score;
+}
+
+function topScoreDisplay() {
+  topScore = topScore + 1;
+  return topScore;
+}
+
 
 export default Game;
