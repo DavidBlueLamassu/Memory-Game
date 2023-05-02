@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 let score = 0;
 let topScore = 0;
+let gemArray = [];
 
 function Game() {
   const [cardState, setCardState] = useState({
@@ -31,12 +32,13 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    return( <div className="flex justify-evenly" onClick={() => {setCardState(
-      { ...cardState, cardShuffle: GemDisplay(), gameScore: scoreDisplay(), gameTopScore: topScore = topScoreDisplay()}
+    return( <div className="flex justify-evenly" onClick={(e) => {setCardState(
+      { ...cardState, cardShuffle: GemDisplay(), gameScore: scoreDisplay(e), gameTopScore: topScore = topScoreDisplay(e)}
       ); console.log(score);}}>
         {
           randomGemsArray.map(function(currentObject) {
             return <GemCard
+            id={currentObject.id}
             key={currentObject.id}
             location={currentObject.location} 
             title={currentObject.title}/>
@@ -73,12 +75,26 @@ function Game() {
   );
 }
 
-function scoreDisplay() {
-  score = score + 1;
+function scoreDisplay(e) {
+  let gemValue = e.target.id
+  const gemSearch = gemArray.find(element => element === gemValue);
+  
+  if (gemSearch === undefined) {
+    score = score + 1; 
+    gemArray.push(gemValue);
+    console.log("Gem Array")
+    console.log(gemArray); 
+  } else {
+    score = 0; 
+    gemArray = [];
+    console.log("Gem Array")
+    console.log(gemArray); 
+    alert("You have already clicked that card. Game Over!");
+  }
   return score;
 }
 
-function topScoreDisplay() {
+function topScoreDisplay(e) {
   topScore = topScore + 1;
   return topScore;
 }
