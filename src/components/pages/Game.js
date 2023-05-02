@@ -5,13 +5,16 @@ import React, { useState } from "react";
 
 let score = 0;
 let topScore = 0;
+let imageText = "Click an image to begin!";
 let gemArray = [];
+let correct;
 
 function Game() {
   const [cardState, setCardState] = useState({
     cardShuffle: GemDisplay(),
     gameScore: score,
-    gameTopScore: topScore
+    gameTopScore: topScore,
+    imageStatus: imageText
   });
 
   function GemDisplay() {
@@ -33,7 +36,12 @@ function Game() {
     }
    
     return( <div className="flex justify-evenly" onClick={(e) => {setCardState(
-      { ...cardState, cardShuffle: GemDisplay(), gameScore: scoreDisplay(e), gameTopScore: topScore = topScoreDisplay(e)}
+      { 
+        ...cardState, cardShuffle: GemDisplay(), 
+        gameScore: scoreDisplay(e), 
+        gameTopScore: topScore = topScoreDisplay(), 
+        imageStatus: imageText = imageTextDisplay(),
+      }
       ); console.log(score);}}>
         {
           randomGemsArray.map(function(currentObject) {
@@ -52,7 +60,7 @@ function Game() {
     <div>
       <header className="flex text-white bg-purple-900 py-6 text-3xl fixed w-screen justify-evenly shadow-2xl">
         <h1 className="ml-2 font-extrabold">Clicky Game</h1>
-        <h1>Click an image to begin!</h1>
+        <h1>{cardState.imageStatus}</h1>
         <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
       <article className="text-white bg-slate-700 py-32">
@@ -82,21 +90,33 @@ function scoreDisplay(e) {
   if (gemSearch === undefined) {
     score = score + 1; 
     gemArray.push(gemValue);
+    correct = true;
     console.log("Gem Array")
     console.log(gemArray); 
   } else {
     score = 0; 
     gemArray = [];
+    correct = false;
     console.log("Gem Array")
     console.log(gemArray); 
-    alert("You have already clicked that card. Game Over!");
+    console.log("Gem Value")
+    console.log(gemValue);
   }
   return score;
 }
 
-function topScoreDisplay(e) {
+function topScoreDisplay() {
   topScore = topScore + 1;
   return topScore;
+}
+
+function imageTextDisplay() {
+  if (correct === true) {
+    imageText = "You guessed correctly!";
+  } else {
+    imageText = "You guessed incorrectly!"
+  }
+  return imageText;
 }
 
 
