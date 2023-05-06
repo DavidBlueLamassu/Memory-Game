@@ -6,6 +6,7 @@ import React, { useState } from "react";
 let score = 0;
 let topScore = 0;
 let imageText = "Click an image to begin!";
+let textColor = "text-white";
 let gemArray = [];
 let correct;
 
@@ -14,7 +15,8 @@ function Game() {
     cardShuffle: GemDisplay(),
     gameScore: score,
     gameTopScore: topScore,
-    imageStatus: imageText
+    imageStatus: imageText,
+    imageStatusColor: textColor
   });
 
   function GemDisplay() {
@@ -41,6 +43,7 @@ function Game() {
         gameScore: scoreDisplay(e), 
         gameTopScore: topScore = topScoreDisplay(), 
         imageStatus: imageText = imageTextDisplay(),
+        imageStatusColor: textColor = textColorDisplay(),
       }
       ); console.log(score);}}>
         {
@@ -60,7 +63,7 @@ function Game() {
     <div>
       <header className="flex text-white bg-purple-900 py-6 text-3xl fixed w-screen justify-evenly shadow-2xl">
         <h1 className="ml-2 font-extrabold">Clicky Game</h1>
-        <h1>{cardState.imageStatus}</h1>
+        <h1 className={cardState.imageStatusColor}>{cardState.imageStatus}</h1>
         <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
       <article className="text-white bg-slate-700 py-32">
@@ -119,5 +122,30 @@ function imageTextDisplay() {
   return imageText;
 }
 
+function textColorDisplay() {
+  if (correct === true && textColor === "text-white") {
+    textColor = "animate-flashGreen";
+  } else if (correct === true && textColor === "animate-flashGreen") {
+    textColor = "animate-flashGreenTwo";
+  } else if (correct === true && textColor === "animate-flashGreenTwo") {
+    textColor = "animate-flashGreen";
+  } else if (correct === true && textColor === "animate-flashRed") {
+    textColor = "animate-flashGreen";
+  } else if (correct === false && textColor === "animate-flashRedTwo") {
+    textColor = "animate-flashGreen";
+  } else if (correct === false && textColor === "text-white") {
+    textColor = "animate-flashRed";
+  } else if (correct === false && textColor === "animate-flashRed") {
+    textColor = "animate-flashRedTwo";
+  } else if (correct === false && textColor === "animate-flashRedTwo") {
+    textColor = "animate-flashRed";
+  } else if (correct === false && textColor === "animate-flashGreen") {
+    textColor = "animate-flashRed";
+  } else if (correct === false && textColor === "animate-flashGreenTwo") {
+    textColor = "animate-flashRed";
+  }
+
+  return textColor;
+}
 
 export default Game;
