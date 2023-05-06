@@ -65,7 +65,7 @@ function Game() {
   return (
     <div>
       <header className="flex text-white bg-purple-900 py-6 text-3xl fixed w-screen justify-evenly shadow-2xl">
-        <h1 className="ml-2 font-extrabold animate-shake">Clicky Game</h1>
+        <h1 className="ml-2 font-extrabold">Clicky Game</h1>
         <h1 className={cardState.imageStatusColor}>{cardState.imageStatus}</h1>
         <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
@@ -82,7 +82,11 @@ function Game() {
         <div className="py-8 bg-purple-500"></div>
         <div className="flex justify-between bg-purple-800 py-2 text-white">
         <p className="px-2 font-bold">Clicky Game!<img src="../assets/images/logo192.png" alt="React Spinner" className="w-5 h-5 float-right ml-2 mt-1"></img></p>
-        <Link to="/" className="px-2 font-bold hover:text-red-500">
+        <Link to="/" className="px-2 font-bold hover:text-red-500" onClick={() => {
+          textColor = "text-white";
+          cardMain = "w-10/12";
+          imageText = "Click an image to begin!";
+          }}>
           Home Page
         </Link>
         </div>
@@ -114,7 +118,14 @@ function scoreDisplay(e) {
 }
 
 function topScoreDisplay() {
-  topScore = topScore + 1;
+  let oldTopScore = localStorage.getItem("topscore");
+  if (oldTopScore !== null) {
+    topScore = oldTopScore;
+  }
+  if (score > topScore) {
+    topScore = score;
+  }
+  localStorage.setItem("topscore", topScore);
   return topScore;
 }
 
