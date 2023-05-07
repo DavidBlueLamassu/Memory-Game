@@ -3,11 +3,12 @@ import GemCard from "./GemCard.js";
 import gems from "./../../gems.json";
 import React, { useState } from "react";
 
+const cardFormat = " w-10/12"
 let score = 0;
 let topScore = 0;
 let imageText = "Click an image to begin!";
 let textColor = "text-white";
-let cardMain = "w-10/12";
+let cardMain = "text-white";
 let gemArray = [];
 let correct;
 
@@ -39,7 +40,7 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    return( <div className="flex justify-evenly" onClick={(e) => {setCardState(
+    return( <div className="grid grid-cols-4 gap-10" onClick={(e) => {setCardState(
       { 
         ...cardState, cardShuffle: GemDisplay(), 
         gameScore: scoreDisplay(e), 
@@ -74,7 +75,7 @@ function Game() {
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
       <main className="flex justify-center">
-        <div className={cardState.cardMainMotion}>
+        <div className={cardState.cardMainMotion + cardFormat}>
         {cardState.cardShuffle}
         </div>
       </main>
@@ -84,7 +85,7 @@ function Game() {
         <p className="px-2 font-bold">Clicky Game!<img src="../assets/images/logo192.png" alt="React Spinner" className="w-5 h-5 float-right ml-2 mt-1"></img></p>
         <Link to="/" className="px-2 font-bold hover:text-red-500" onClick={() => {
           textColor = "text-white";
-          cardMain = "w-10/12";
+          cardMain = "text-white";
           imageText = "Click an image to begin!";
           }}>
           Home Page
@@ -165,12 +166,12 @@ function textColorDisplay() {
 }
 
 function cardMainDisplay() {
-  if (correct === false && cardMain === "w-10/12") {
-    cardMain = "w-10/12 animate-shake";
-  } else if (correct === false && cardMain === "w-10/12 animate-shake") {
-    cardMain = "w-10/12 animate-shakeTwo";
-  } else if (correct === false && cardMain === "w-10/12 animate-shakeTwo") {
-    cardMain = "w-10/12 animate-shake";
+  if (correct === false && cardMain === "text-white") {
+    cardMain = "animate-shake";
+  } else if (correct === false && cardMain === "animate-shake") {
+    cardMain = "animate-shakeTwo";
+  } else if (correct === false && cardMain === "animate-shakeTwo") {
+    cardMain = "animate-shake";
   }
   return cardMain;
 }
