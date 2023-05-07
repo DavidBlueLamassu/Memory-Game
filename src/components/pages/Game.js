@@ -26,7 +26,7 @@ function Game() {
     const randomGemsArray = [];
   
     while (randomArray.length < gems.length) {
-      let x = Math.floor(Math.random() * 4);
+      let x = Math.floor(Math.random() * 12);
       let numberCheck = randomArray.find(e => e === x);
       if (numberCheck === undefined) {
         randomArray.push(x);

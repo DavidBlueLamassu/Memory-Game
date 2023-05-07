@@ -22,5 +22,53 @@
         "title": "Sapphire",
         "location": "../assets/images/sapphire.jpg",
         "source": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Sapphire_Gem.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Amethyst",
+        "location": "../assets/images/amethyst.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Amethyst._Magaliesburg%2C_South_Africa.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Emerald",
+        "location": "../assets/images/emerald.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/7/71/Mim_emerald.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Lapis Lazuli",
+        "location": "../assets/images/lapis-lazuli.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Lapis_Lazuli%2C_Afganistan.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Opal",
+        "location": "../assets/images/opal.jpg",
+        "source": "https://www.flickr.com/photos/jsjgeology/23226115484"
+    },
+    {
+        "id": 9,
+        "title": "Spessartine",
+        "location": "../assets/images/spessartine.jpg",
+        "source": "https://www.flickr.com/photos/jsjgeology/51647854669"
+    },
+    {
+        "id": 10,
+        "title": "Tiger's eye",
+        "location": "../assets/images/tiger's-eye.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Tiger%27s_eye_2.jpg"
+    },
+    {
+        "id": 11,
+        "title": "Topaz",
+        "location": "../assets/images/topaz.jpg",
+        "source": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Quartz-Topaz-tch03a.jpg"
+    },
+    {
+        "id": 12,
+        "title": "Tourmaline",
+        "location": "../assets/images/tourmaline.jpg",
+        "source": "https://www.flickr.com/photos/jsjgeology/52318860517"
     }
-  ]
+]
