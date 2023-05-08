@@ -3,7 +3,7 @@ import GemCard from "./GemCard.js";
 import gems from "./../../gems.json";
 import React, { useState } from "react";
 
-const cardFormat = " w-10/12"
+const cardFormat = " w-10/12 flex justify-center"
 let score = 0;
 let topScore = 0;
 let imageText = "Click an image to begin!";
@@ -40,7 +40,7 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    return( <div className="grid grid-cols-4 gap-10" onClick={(e) => {setCardState(
+    return( <div className="grid grid-cols-4 gap-2" onClick={(e) => {setCardState(
       { 
         ...cardState, cardShuffle: GemDisplay(), 
         gameScore: scoreDisplay(e), 
@@ -70,7 +70,7 @@ function Game() {
         <h1 className={cardState.imageStatusColor}>{cardState.imageStatus}</h1>
         <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
-      <article className="text-white bg-slate-700 py-32">
+      <article className="text-white bg-slate-700 py-32 mb-2">
         <h1 className="py-10 text-6xl text-center font-bold">Clicky Game!</h1>
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
@@ -79,7 +79,7 @@ function Game() {
         {cardState.cardShuffle}
         </div>
       </main>
-      <footer>
+      <footer className="mt-2">
         <div className="py-8 bg-purple-500"></div>
         <div className="flex justify-between bg-purple-800 py-2 text-white">
         <p className="px-2 font-bold">Clicky Game!<img src="../assets/images/logo192.png" alt="React Spinner" className="w-5 h-5 float-right ml-2 mt-1"></img></p>
