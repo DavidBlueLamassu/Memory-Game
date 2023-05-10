@@ -4,13 +4,20 @@ import gems from "./../../gems.json";
 import React, { useState } from "react";
 
 const cardFormat = " w-10/12 flex justify-center"
+let oldTopScore = localStorage.getItem("topscore2");
 let score = 0;
-let topScore = 0;
+let topScore;
 let imageText = "Click an image to begin!";
 let textColor = "text-white";
 let cardMain = "text-white";
 let gemArray = [];
 let correct;
+
+if (oldTopScore !== null) {
+  topScore = oldTopScore;
+} else {
+  topScore = 0;
+}
 
 function Game() {
   const [cardState, setCardState] = useState({
@@ -40,7 +47,11 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    return( <div className="grid grid-cols-4 gap-2" onClick={(e) => {setCardState(
+    return( <div className="grid grid-cols-4 gap-2" onClick={(e) => {
+      if(e.target.id === "") {
+        return;
+      };
+      setCardState(
       { 
         ...cardState, cardShuffle: GemDisplay(), 
         gameScore: scoreDisplay(e), 
@@ -56,7 +67,8 @@ function Game() {
             id={currentObject.id}
             key={currentObject.id}
             location={currentObject.location} 
-            title={currentObject.title}/>
+            title={currentObject.title}
+            />
           })
         }
       </div>
@@ -87,6 +99,7 @@ function Game() {
           textColor = "text-white";
           cardMain = "text-white";
           imageText = "Click an image to begin!";
+          score = 0;
           }}>
           Home Page
         </Link>
@@ -119,14 +132,14 @@ function scoreDisplay(e) {
 }
 
 function topScoreDisplay() {
-  let oldTopScore = localStorage.getItem("topscore");
+  let oldTopScore = localStorage.getItem("topscore2");
   if (oldTopScore !== null) {
     topScore = oldTopScore;
   }
   if (score > topScore) {
     topScore = score;
   }
-  localStorage.setItem("topscore", topScore);
+  localStorage.setItem("topscore2", topScore);
   return topScore;
 }
 
