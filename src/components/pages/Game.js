@@ -100,6 +100,7 @@ function Game() {
           cardMain = "text-white";
           imageText = "Click an image to begin!";
           score = 0;
+          gemArray = [];
           }}>
           Home Page
         </Link>
