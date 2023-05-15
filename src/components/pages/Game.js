@@ -6,7 +6,12 @@ import React, { useState } from "react";
 //This variable is paired with a variable for changing the state of the main card display; cardFormat narrows the width of the 
 //relevant div so that the shake animation is activated at an incorrect answer, the element does not go outside the borders of the
 //screen. The rest of the formatting centers the cards.
-const cardFormat = " w-10/12 flex justify-center"
+const cardFormat = " w-10/12 flex justify-center";
+
+//This variable is paired with a variable for changing the state of the header text. The default text reads "Click an image to begin!"
+//but upon a click event is revised to indicate if the user has made a correct or incorrect guess. The purpose of headerText is to 
+//provide formatting to make this portion of the header responsive to smaller screens sizes.
+const headerText = " text-xl md:text-3xl mt-5 lg:mt-0";
 
 //These variables control the score, top score and instruction displays in the header
 let oldTopScore = localStorage.getItem("topscore2");
@@ -90,13 +95,14 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    //The function returns a randomly ordered card display in 4 columns. The div containing the cards contains an onClick function.
-    //Whenever one of the cards is clicked there will be a change of state resulting in a reshuffle of the cards, and the calling of 
-    //functions to change the game score, high score and text in the header (including flashes of green or red to indicate correct or
-    //incorrect guesses) and to call a function to determine whether to activate the shake animation (for an incorrect answer). None
-    //of these functions are to be called for a mouse click on the div but not on one of the cards (should the value of 
-    // e.target.id === ""). This prevents inappropriate activation of functions meant solely to be called for a card click.
-    return( <div className="grid grid-cols-4 gap-2" onClick={(e) => {
+    //The function returns a randomly ordered card display in 2-4 columns (depending upon screen size). The div containing the cards 
+    //contains an onClick function. Whenever one of the cards is clicked there will be a change of state resulting in a reshuffle of 
+    //the cards, and the calling of functions to change the game score, high score and text in the header (including flashes
+    //of green or red to indicate correct or incorrect guesses) and to call a function to determine whether to activate the shake
+    //animation (for an incorrect answer). None of these functions are to be called for a mouse click on the div but not on one of
+    //the cards (should the value of e.target.id === ""). This prevents inappropriate activation of functions meant solely to be
+    //called for a card click.
+    return( <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2" onClick={(e) => {
       if(e.target.id === "") {
         return;
       };
@@ -130,21 +136,24 @@ function Game() {
   return (
     <div>
       
-      {/* header formatting: flexbox with elements spaced evenly; header position is fixed and does not scroll up or down */}
-      <header className="flex text-white bg-purple-900 py-6 text-3xl fixed w-screen justify-evenly shadow-2xl">
-        <h1 className="ml-2 font-extrabold">Clicky Game</h1>
+      {/* header formatting: flexbox with elements spaced evenly; header position is fixed and does not scroll up or down. For 
+      smaller screens sizes text elements are displayed in column; for large screens it is displayed in a row */}
+      <header className="text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl">
+        <h1 className="ml-2 text-5xl lg:text-3xl font-extrabold">Clicky Game</h1>
         
         {/* formatting for instruction text, which also doubles to let the user know whether a click is correct or incorrect.
-        Formatting and revisions to formatting are set using state */}
-        <h1 className={cardState.imageStatusColor}>{cardState.imageStatus}</h1>
+        Formatting and revisions to formatting are set using state. The formatting values in headerText make the webpage responsive
+        to smaller screen sizes. */}
+        <h1 className={cardState.imageStatusColor + headerText}>{cardState.imageStatus}</h1>
         
-        {/* Score and Top Score values are set and revised using state */}
-        <h1>Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
+        {/* Score and Top Score values are set and revised using state. The formatting enlarges the text for larger screens. */}
+        <h1 className="text-xl md:text-3xl">Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
       
-      {/* formatting for subheader immediately above the card display */}
+      {/* Formatting for subheader immediately above the card display. Formatting includes an expanded margin for smaller screen
+      sizes to prevent the header appearing on top of, and blocking, this text. */}
       <article className="text-white bg-slate-700 py-32 mb-2">
-        <h1 className="py-10 text-6xl text-center font-bold">Clicky Game!</h1>
+        <h1 className="py-10 text-6xl text-center font-bold mt-20 sm:mt-10 lg:mt-0">Clicky Game!</h1>
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
       
