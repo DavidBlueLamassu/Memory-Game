@@ -102,7 +102,7 @@ function Game() {
     //animation (for an incorrect answer). None of these functions are to be called for a mouse click on the div but not on one of
     //the cards (should the value of e.target.id === ""). This prevents inappropriate activation of functions meant solely to be
     //called for a card click.
-    return( <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2" onClick={(e) => {
+    return( <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" onClick={(e) => {
       if(e.target.id === "") {
         return;
       };
@@ -137,8 +137,10 @@ function Game() {
     <div>
       
       {/* header formatting: flexbox with elements spaced evenly; header position is fixed and does not scroll up or down. For 
-      smaller screens sizes text elements are displayed in column; for large screens it is displayed in a row */}
-      <header className="text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl">
+      smaller screen sizes text elements are displayed in column; for large screens they are displayed in a row. z-index is set higher
+      than for the card display in the main element below to prevent the cards appearing over the header when the shake animation
+      is active. */}
+      <header className="z-10 text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl">
         <h1 className="ml-2 text-5xl lg:text-3xl font-extrabold">Clicky Game</h1>
         
         {/* formatting for instruction text, which also doubles to let the user know whether a click is correct or incorrect.
@@ -157,9 +159,11 @@ function Game() {
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
       
-      {/* card display, centered in a flex box the value for cardMainMotion is changed to activate the shake animation when an 
-      incorrect answer is given. The GemDisplay function is activated to reshuffle the cards immediately upon click */}
-      <main className="flex justify-center">
+      {/* card display, centered in a flex box; the value for cardMainMotion is changed to activate the shake animation when an 
+      incorrect answer is given. The GemDisplay function is activated to reshuffle the cards immediately upon click. The z-index
+      for this element is set lower than for the header above to prevent the cards appearing over the header when the shake
+      animation is activated. */}
+      <main className="z-0 flex justify-center py-5">
         <div className={cardState.cardMainMotion + cardFormat}>
         {cardState.cardShuffle}
         </div>

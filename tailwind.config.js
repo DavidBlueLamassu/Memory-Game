@@ -176,6 +176,12 @@ module.exports = {
           '2.5%, 12.5%, 22.5%, 32.5%, 42.5%, 52.5%, 62.5%, 72.5%, 82.5%, 92.5%': {color: 'red'},
           '5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95%': {color: 'blue'},
           '7.5%, 17.5%, 27.5%, 37.5%, 47.5%, 57.5%, 67.5%, 77.5%, 87.5%, 97.5%': {color: 'green'},
+        },
+        //This effect marginally increases the size of the element to which it is applied and is used upon hover for all the game
+        //cards. The code for this effect is derived from an example from "W3 Schools": "How TO - Zoom on Hover", W3 Schools, last
+        //viewed: 15 May 2023: https://www.w3schools.com/howto/howto_css_zoom_hover.asp
+        zoom: {
+          '0%, 100%': {transform: 'scale(1.1)'},
         }
       },
       animation: {
@@ -189,6 +195,7 @@ module.exports = {
         textFall: 'textFall 5s infinite',
         colorWave: 'colorWave 60s infinite',
         textGrow2: 'textGrow2 5s 1',
+        zoom: 'zoom .2s infinite'
       },
       
     },
