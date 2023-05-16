@@ -27,6 +27,6 @@ You can find more of my work at [DavidBlueLamassu](https://github.com/DavidBlueL
 ## https://zingy-kitten-6d9e38.netlify.app/
 
 ## Homepage
-![Screenshot of Memory Game](./public/assets/images/memory-match-homepage-screenshot.png)
+![Screenshot of Memory Game: Homepage](./public/assets/images/memory-match-homepage-screenshot.png)
 ## Game
-![Screenshot of Memory Game](./public/assets/images/memory-match-game-screenshot.png)
+![Screenshot of Memory Game: Game page](./public/assets/images/memory-match-game-screenshot.png)
