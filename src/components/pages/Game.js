@@ -140,8 +140,8 @@ function Game() {
       smaller screen sizes text elements are displayed in column; for large screens they are displayed in a row. z-index is set higher
       than for the card display in the main element below to prevent the cards appearing over the header when the shake animation
       is active. */}
-      <header className="z-10 text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl">
-        <h1 className="ml-2 text-5xl lg:text-3xl font-extrabold">Clicky Game</h1>
+      <header className="z-10 text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl font-serif">
+        <h1 className="lg:ml-2 ml-0 text-5xl lg:text-3xl font-extrabold">Memory Match</h1>
         
         {/* formatting for instruction text, which also doubles to let the user know whether a click is correct or incorrect.
         Formatting and revisions to formatting are set using state. The formatting values in headerText make the webpage responsive
@@ -154,8 +154,8 @@ function Game() {
       
       {/* Formatting for subheader immediately above the card display. Formatting includes an expanded margin for smaller screen
       sizes to prevent the header appearing on top of, and blocking, this text. */}
-      <article className="text-white bg-slate-700 py-32 mb-2">
-        <h1 className="py-10 text-6xl text-center font-bold mt-20 sm:mt-10 lg:mt-0">Clicky Game!</h1>
+      <article className="text-white bg-slate-700 py-32 mb-2 font-serif">
+        <h1 className="py-10 text-6xl text-center font-bold mt-20 sm:mt-10 lg:mt-0">Memory Match</h1>
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
       
@@ -174,19 +174,19 @@ function Game() {
       and shake animations from activating upon the user returning to the game as the game is ended immediately upon returning
       to the homepage and it would not be appropriate for mid-game actions to be activated at the beginning of a new game. imageText,
       score and gemArray are also returned to their original values for the same reason. */}
-      <footer className="mt-2">
+      <footer className="mt-2 font-serif">
         <div className="py-8 bg-purple-500"></div>
         <div className="flex justify-between bg-purple-800 py-2 text-white">
-        <p className="px-2 font-bold">Clicky Game!<img src="../assets/images/logo192.png" alt="React Spinner" className="w-5 h-5 float-right ml-2 mt-1"></img></p>
-        <Link to="/" className="px-2 font-bold hover:text-red-500" onClick={() => {
-          textColor = "text-white";
-          cardMain = "text-white";
-          imageText = "Click an image to begin!";
-          score = 0;
-          gemArray = [];
-          }}>
-          Home Page
-        </Link>
+          <p className="px-2 font-bold">Memory Match<img src="../assets/images/logo192.png" alt="React Spinner" className="w-5 h-5 float-right ml-2 animate-rotation"></img></p>
+          <Link to="/" className="px-2 font-bold hover:text-red-500" onClick={() => {
+            textColor = "text-white";
+            cardMain = "text-white";
+            imageText = "Click an image to begin!";
+            score = 0;
+            gemArray = [];
+            }}>
+            Home Page
+          </Link>
         </div>
       </footer>
     </div>
