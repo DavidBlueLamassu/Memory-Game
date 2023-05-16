@@ -29,4 +29,4 @@ You can find more of my work at [DavidBlueLamassu](https://github.com/DavidBlueL
 ## Homepage
 ![Screenshot of Memory Game: Homepage](./public/assets/images/memory-match-homepage-screenshot.png)
 ## Game
-![Screenshot of Memory Game: Game page](./public/assets/images/memory-match-game-screenshot.png)
+![Screenshot of Memory Game: Game page](./public/assets/images/memory-match-gamepage-screenshot.png)
