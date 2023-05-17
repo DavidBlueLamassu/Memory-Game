@@ -3,37 +3,37 @@ import GemCard from "./GemCard.js";
 import gems from "./../../gems.json";
 import React, { useState } from "react";
 
-//This variable is paired with a variable for changing the state of the main card display; cardFormat narrows the width of the 
-//relevant div so that the shake animation is activated at an incorrect answer, the element does not go outside the borders of the
-//screen. The rest of the formatting centers the cards.
+//This variable is paired with a variable for changing the state of the card display in the <main> element; cardFormat narrows the 
+//width of the relevant div so that when the shake animation is activated at an incorrect answer, the element does not go outside 
+//the borders of the screen. The rest of the formatting centers the cards.
 const cardFormat = " w-10/12 flex justify-center";
 
 //This variable is paired with a variable for changing the state of the header text. The default text reads "Click an image to begin!"
-//but upon a click event is revised to indicate if the user has made a correct or incorrect guess. The purpose of headerText is to 
-//provide formatting to make this portion of the header responsive to smaller screens sizes.
+//but upon a click event is revised to indicate whether the user has made a correct or incorrect guess. The purpose of headerText  
+//is to provide formatting to make this portion of the header responsive to smaller screen sizes.
 const headerText = " text-xl md:text-3xl mt-5 lg:mt-0";
 
-//These variables control the score, top score and instruction displays in the header
+//These variables control the score, top score and text displays in the header.
 let oldTopScore = localStorage.getItem("topscore2");
 let score = 0;
 let topScore;
 let imageText = "Click an image to begin!";
 
 //These two variables are used for changes of state. Both are initially set to redundant values that will not affect the webpage's
-//formatting. When textColor is reset upon a click event it will cause the header text represented by imageText to flash green, to
+//formatting. When textColor is reset, upon a click event, it will cause the header text represented by imageText to flash green, to
 //indicate a correct guess or to flash red for an incorrect guess. cardMain will introduce an animation to shake the card display 
 //when an incorrect guess is made.
 let textColor = "text-white";
 let cardMain = "text-white";
 
-//gemArray stores the values for all the cards clicked.
+//gemArray stores the id values for all the cards clicked.
 let gemArray = [];
 
-//correct is a boolean used in conjunction with functions that change state after a correct or incorrect click. If correct === true
-//then the click was correct; if correct === false the answer was incorrect.
+//"correct" is a boolean used in conjunction with functions that change state after a correct or incorrect click. If the guess was 
+//correct then "correct" === true; if the guess was incorrect then "correct" === false.
 let correct;
 
-//A conditional to determine what top score should be displayed. If the game has been played before there will be a top score saved
+//A conditional to determine what top score should be displayed. If the game has been played before, there will be a top score saved
 //in localStorage. This score will then be displayed as the top score. Otherwise topScore defaults to 0.
 if (oldTopScore !== null) {
   topScore = oldTopScore;
@@ -43,8 +43,8 @@ if (oldTopScore !== null) {
 
 function Game() {
   
-  //The useState hook sets the initial values for various parts of the Game component including the text and scores in the header and
-  //the cards and status of the shake animation in the card display.
+  //The useState hook sets the initial values for various parts of the Game page component, including the text and scores in the header, 
+  //the cards in the <main> element and the status of the shake animation for the <main> element card display.
   const [cardState, setCardState] = useState({
     cardShuffle: GemDisplay(),
     gameScore: score,
@@ -59,7 +59,7 @@ function Game() {
   function GemDisplay() {
     
     //This variable stores numbers from 1 to 12 in random order, corresponding to the 12 gem objects in gems.json and represented
-    //by the imported variable gems.
+    //by the imported variable "gems".
     const randomArray = [];
 
     //This array will store all the objects from gems.json in the order determined by the arrangement of the random numbers of 
@@ -85,7 +85,7 @@ function Game() {
       }
     }
   
-    //This for loop makes an array from the objects in gems.json in the numerical order determined by randomArray. Once 
+    //This "for" loop makes an array from the objects in gems.json in the numerical order determined by randomArray. Once 
     //randomGemsArray is filled, it will contain a random arrangement of these objects.
     for (let i = 0; i < randomArray.length; i++) { 
       
@@ -95,13 +95,13 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    //The function returns a randomly ordered card display in 2-4 columns (depending upon screen size). The div containing the cards 
-    //contains an onClick function. Whenever one of the cards is clicked there will be a change of state resulting in a reshuffle of 
-    //the cards, and the calling of functions to change the game score, high score and text in the header (including flashes
-    //of green or red to indicate correct or incorrect guesses) and to call a function to determine whether to activate the shake
-    //animation (for an incorrect answer). None of these functions are to be called for a mouse click on the div but not on one of
-    //the cards (should the value of e.target.id === ""). This prevents inappropriate activation of functions meant solely to be
-    //called for a card click.
+    //This part of the GemDisplay() function returns a randomly ordered card display in 2-4 columns (depending upon screen size). 
+    //The div containing the cards contains an onClick function. Whenever one of the cards is clicked there will be a change
+    //of state resulting in a reshuffle of the cards, and the calling of functions to change the game score, high score and header
+    //text (including flashes of green or red to indicate correct or incorrect guesses) and to call a function to determine
+    //whether to activate the shake animation (for an incorrect answer). None of these functions are to be called for a mouse click
+    //on the div in the spaces between the cards (where the value of e.target.id === ""). In this case a conditional prevents 
+    //inappropriate activation of functions meant solely to be called for a card click.
     return( <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" onClick={(e) => {
       if(e.target.id === "") {
         return;
@@ -116,9 +116,8 @@ function Game() {
         cardMainMotion: cardMain = cardMainDisplay(),
       }
       )}}>
-        {/* This function maps over randomGemArray (derived from gem.json) to produce cards using props from GemCard. The scoreDisplay
-        function uses the card id to determine whether the card has previously been clicked and assigns an increase in score (for a 
-        correct click) or ends the game (for an incorrect click) as appropriate. */}
+        {/* This function maps over randomGemArray (derived from gems.json) to produce cards using props from GemCard. An id is 
+        included for each card so that the scoreDisplay() function can determine whether the card has previously been clicked. */}
         {
           randomGemsArray.map(function(currentObject) {
             return <GemCard
@@ -133,6 +132,7 @@ function Game() {
     )
   }
 
+  //This section returns the principal html code for the Game.js page component.
   return (
     <div>
       
@@ -143,8 +143,8 @@ function Game() {
       <header className="z-10 text-center lg:flex text-white bg-purple-900 py-6 text-3xl fixed w-screen lg:justify-evenly shadow-2xl font-serif">
         <h1 className="lg:ml-2 ml-0 text-5xl lg:text-3xl font-extrabold">Memory Match</h1>
         
-        {/* formatting for instruction text, which also doubles to let the user know whether a click is correct or incorrect.
-        Formatting and revisions to formatting are set using state. The formatting values in headerText make the webpage responsive
+        {/* Formatting for the header text, which provides user instructions and also doubles to let the user know whether a click is correct 
+        or incorrect. Color formatting and color animation are set using state. The formatting values in headerText make the webpage responsive
         to smaller screen sizes. */}
         <h1 className={cardState.imageStatusColor + headerText}>{cardState.imageStatus}</h1>
         
@@ -152,15 +152,15 @@ function Game() {
         <h1 className="text-xl md:text-3xl">Score: {cardState.gameScore} | Top Score: {cardState.gameTopScore}</h1>
       </header>
       
-      {/* Formatting for subheader immediately above the card display. Formatting includes an expanded margin for smaller screen
+      {/* Formatting for subheader immediately above the card display. Formatting includes an expanded top margin for smaller screen
       sizes to prevent the header appearing on top of, and blocking, this text. */}
       <article className="text-white bg-slate-700 py-32 mb-2 font-serif">
         <h1 className="py-10 text-6xl text-center font-bold mt-20 sm:mt-10 lg:mt-0">Memory Match</h1>
         <h2 className="text-center text-2xl font-bold">Click on an image to earn points, but don't click on any more than once!</h2>
       </article>
       
-      {/* card display, centered in a flex box; the value for cardMainMotion is changed to activate the shake animation when an 
-      incorrect answer is given. The GemDisplay function is activated to reshuffle the cards immediately upon click. The z-index
+      {/* Card display, centered in a flex box; the value for cardMainMotion is changed to activate the shake animation when an 
+      incorrect answer is given. The GemDisplay() function is activated to reshuffle the cards immediately upon click. The z-index
       for this element is set lower than for the header above to prevent the cards appearing over the header when the shake
       animation is activated. */}
       <main className="z-0 flex justify-center py-5">
@@ -169,11 +169,12 @@ function Game() {
         </div>
       </main>
 
-      {/* footer and footer formatting; this includes and image for the react spinner. A link is included to return the user to the
-      homepage. Upon clicking this event textColor and cardMain are returned to their original settings. This prevents the color
-      and shake animations from activating upon the user returning to the game as the game is ended immediately upon returning
+      {/* footer and footer formatting; this includes an image for the React spinner symbol. A link is included to return the user 
+      to the homepage. Upon clicking this link textColor and cardMain are returned to their original settings. This prevents the color
+      and shake animations from activating when the user returns to the game page, as the game is ended immediately upon returning
       to the homepage and it would not be appropriate for mid-game actions to be activated at the beginning of a new game. imageText,
-      score and gemArray are also returned to their original values for the same reason. */}
+      score and gemArray are also returned to their original values for the same reason. The animate-rotation animation attached 
+      to the React spinner makes this image rotate slowly on it axis. */}
       <footer className="mt-2 font-serif">
         <div className="py-8 bg-purple-500"></div>
         <div className="flex justify-between bg-purple-800 py-2 text-white">
@@ -195,15 +196,16 @@ function Game() {
 
 function scoreDisplay(e) {
   
-  //This variable holds the id of the card most recently (from 1-12); although the cards are shuffled their ids are constant.
+  //This variable holds the id value of the card most recently clicked (from 1-12); although the cards are reshuffled to new positions
+  //their ids are constant.
   let gemValue = e.target.id
 
   //This variable is used to determine whether the value of gemValue has already been pushed to gemArray
   const gemSearch = gemArray.find(element => element === gemValue);
   
-  //If gemValue's value has not yet been pushed to the gemArray (gemSearch === undefined) the player's score increases by 1 for 
-  //a correct answer and the value is pushed to gemArray as each card may only be clicked once and gemArray records the click 
-  //event. Otherwise, if the value is found this is an incorrect answer, the game ends and the score returns to 0.
+  //If gemValue's value is not found in gemArray (gemSearch === undefined) the player's score increases by 1 for 
+  //a correct answer. The value is then pushed to gemArray for future reference as each card may only be clicked once. 
+  //Otherwise, if gemArray already contains the value, then this is an incorrect answer, the game ends and the score returns to 0.
   if (gemSearch === undefined) {
     score = score + 1; 
     gemArray.push(gemValue);
@@ -214,7 +216,7 @@ function scoreDisplay(e) {
     correct = false;
   }
 
-  //updates score display
+  //Updates score display.
   return score;
 }
 
@@ -224,7 +226,7 @@ function topScoreDisplay() {
   //been stored.
   let oldTopScore = localStorage.getItem("topscore2");
   
-  //If a value has been stored then topScore = oldTopScore; otherwise topScore = it original value of 0. If the current score is 
+  //If a value has been stored then topScore = oldTopScore; otherwise topScore = its original value of 0. If the current score is 
   //greater than topScore then topScore will eqal score, as this is the current top score. 
   if (oldTopScore !== null) {
     topScore = oldTopScore;
@@ -236,12 +238,12 @@ function topScoreDisplay() {
   //The value of topScore is saved to localStorage
   localStorage.setItem("topscore2", topScore);
   
-  //updates topScore display
+  //Updates topScore display
   return topScore;
 }
 
 //This function updates the text display in the header based upon whether the click event returned a correct or incorrect guess
-//as determined in the scoreDisplay function and recorded in the boolean variable "correct".
+//as determined in the scoreDisplay() function and recorded in the boolean variable "correct".
 function imageTextDisplay() {
   if (correct === true) {
     imageText = "You guessed correctly!";
@@ -251,13 +253,13 @@ function imageTextDisplay() {
   return imageText;
 }
 
-//This conditional function activates color effects for the header information text in accord with whether the click event gave a  
-//correct or incorrect answer. This is determined in the scoreDisplay function and recorded in the boolean variable "correct".   
+//This conditional function activates color effects for the header text in accord with whether the click event gave a  
+//correct or incorrect answer. This is determined in the scoreDisplay() function and recorded in the boolean variable "correct".   
 //When the value of correct is true (a correct answer), the text briefly flashes green; when the value of correct is false, the text
-//flashes red. The color effects result from changes in the value of the "textColor" variable which is used to style the element 
-//containing the header information text. Each color animation is set to iterate only once. Accordingly, two identical animations
-//are required for the green effect, as it is possible to make more than one correct selection in a row, and an unchanged value 
-//for the animation will not reactivate it should it be required more than once. As it is never possible to make two incorrect 
+//flashes red. The color effects result from changes in the value of the "textColor" variable which is used to style the header text. 
+//Each color animation is set to iterate only once. Accordingly, two identical animations are required for
+//the green effect, as it is possible to make more than one correct selection in a row, and an unchanged value for the animation will
+//not reactivate the green effect should it be required more than once. As it is never possible to make two incorrect 
 //selections in a row, only one animation is required for the red effect.
 function textColorDisplay() {
   if (correct === true && textColor === "text-white") {
@@ -281,12 +283,12 @@ function textColorDisplay() {
   return textColor;
 }
 
-//This function activates a shake animation when the user makes an incorrect click. This is determined in the scoreDisplay 
+//This function activates a shake animation when the user makes an incorrect click. This is determined in the scoreDisplay() 
 //function and recorded in the boolean variable "correct".  Only if the value of "correct" === false will a shake animation be
 //activated by changing the value of "cardMain" to activate one of the two shake animations for the div containing the game cards. 
 //These animations iterate only once and will not be reactivated if there is no change to the value of "cardMain". Accordingly,
 //the conditional code of the cardMainDisplay function alternates between different, but identical, versions of the shake
-//function once "cardMain" has been assigned one of them as a value (as opposed to its original inert value: "text-white").
+//animation once "cardMain" has been assigned one of them as a value (as opposed to its original inert value: "text-white").
 function cardMainDisplay() {
   if (correct === false && cardMain === "text-white") {
     cardMain = "animate-shake";
