@@ -1,25 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavTabs from './components/NavTabs';
 import Home from './components/pages/Home';
 import Game from './components/pages/Game';
-import Blog from './components/pages/Blog';
-import Contact from './components/pages/Contact';
+import LevelTwo from './components/pages/LevelTwo';
+import LevelThree from './components/pages/LevelThree';
 
 function App() {
   return (
     <Router>
       <div>
-        <NavTabs />
-        {/* Wrap Route elements in a Routes component */}
         <Routes>
-          {/* Define routes using the Route component to render different page components at different paths */}
-          {/* Define a default route that will render the Home component */}
+          {/* Only two of these page components are currently in use; the homepage "Home.js" and "Game.js" each of which contains
+          links to the other. levelTwo and levelThree are placeholders for when the game is expanded to higher and more difficult
+          levels. */}
           <Route path="/*" element={<Home />} />
           <Route path="game/*" element={<Game />} />
-          <Route path="blog" element={<Blog />} />
-          {/* Define a route that will have descendant routes */}
-          <Route path="contact/" element={<Contact />} />
+          <Route path="levelTwo" element={<LevelTwo />} />
+          <Route path="levelThree" element={<LevelThree />} />
         </Routes>
       </div>
     </Router>

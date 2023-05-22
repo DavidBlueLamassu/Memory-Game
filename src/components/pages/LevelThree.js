@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Contact(props) {
+function LevelThree() {
   return (
     <div className="bg-orange-500">
-      <h1>Contact Page</h1>
+      <h1>Level Three</h1>
     </div>
   );
 }
 
-export default Contact;
+export default LevelThree;
