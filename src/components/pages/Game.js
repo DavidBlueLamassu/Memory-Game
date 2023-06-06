@@ -95,14 +95,14 @@ function Game() {
       randomGemsArray.push(randomGem);
     }
    
-    //This part of the GemDisplay() function returns a randomly ordered card display in 2-4 columns (depending upon screen size). 
+    //This part of the GemDisplay() function returns a randomly ordered card display in 4 columns. 
     //The div containing the cards contains an onClick function. Whenever one of the cards is clicked there will be a change
     //of state resulting in a reshuffle of the cards, and the calling of functions to change the game score, high score and header
     //text (including flashes of green or red to indicate correct or incorrect guesses) and to call a function to determine
     //whether to activate the shake animation (for an incorrect answer). None of these functions are to be called for a mouse click
     //on the div in the spaces between the cards (where the value of e.target.id === ""). In this case a conditional prevents 
     //inappropriate activation of functions meant solely to be called for a card click.
-    return( <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" onClick={(e) => {
+    return( <div className="grid grid-cols-4 gap-4" onClick={(e) => {
       if(e.target.id === "") {
         return;
       };
